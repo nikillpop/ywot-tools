@@ -25,8 +25,8 @@ function WorldExtensions() {
     // our request will not be strenuous on the server (this is
     // unlikely anyways, but safeguards are nice), and we discourage
     // this script from being abused as spam
-    this.MAXEDITS = this.width*this.height; // 1 tiles per commit
-    this.DELAY = 2000 // milliseconds
+    this.MAXEDITS = this.width*this.height; // one tile per commit
+    this.DELAY = 250 // milliseconds
     this.queue = [];
     this.go = true;
 
@@ -128,10 +128,23 @@ function WorldExtensions() {
     this.commit = function() {
         if(this.world._edits.length === 0) {
             var stage = [];
+            var currentEdit;
             while(stage.length <= this.MAXEDITS && this.queue.length > 0) {
-                stage.push(this.queue.shift());
+                currentEdit = this.queue.shift();
+                currentEdit[4] = Date.now();
+                stage.push(currentEdit);
             }
-            this.world._edits = stage;
+            //this.world._edits = stage;
+            if(stage.length > 0) {
+                jQuery.ajax({
+                    type: "POST",
+                    url: window.location.pathname,
+                    data: {
+                        edits: JSON.stringify(stage)
+                    },
+                    dataType: "json"
+                });
+            }
         }
         if(this.go) {
             var that = this;
