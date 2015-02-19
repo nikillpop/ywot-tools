@@ -170,7 +170,6 @@ function WorldExtensions() {
                 currentEdit[4] = Date.now();
                 stage.push(currentEdit);
             }
-            //this.world._edits = stage;
             if(stage.length > 0) {
                 try {
                     jQuery.ajax({
