@@ -147,7 +147,7 @@ function WorldExtensions() {
             case "up":
                 y = -1;
                 break;
-            case "left:":
+            case "left":
                 x = -1;
                 break;
             case "right":
