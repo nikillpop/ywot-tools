@@ -59,6 +59,8 @@ function WorldExtensions() {
     // a universal coordinate system which is easier to understand.
 
     this.goToCartesian = function(x, y) {
+        assert(typeof(x) == 'number');
+        assert(typeof(y) == 'number');
         this.charX = this.mod(x, this.width);
         this.charY = this.mod(y, this.height);
         this.tileX = Math.floor(x/this.width);
@@ -97,6 +99,19 @@ function WorldExtensions() {
             character,
             this.msg
         ])
+    }
+
+    // Ask if the queue is small enough to add more stuff to.  This
+    // is not a true limit, but for functions that are going to 
+    // add to the queue indefinitely (i.e., road drawing), this enables
+    // laziness (and thus less strain on the poor old browser!)
+    // The choice for size we look for is arbitrary but two nice properties
+    // hold:
+    //      1. The size is large enough that we won't every accidentally
+    //         wait longer than is necessary, but
+    //      2. small enough that the size of queue will never be huge.
+    this.isReady = function() {
+        return this.queue.length <= 4*this.MAXEDITS
     }
 
     // Convenient naviagtional function
