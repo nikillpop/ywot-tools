@@ -26,7 +26,7 @@ function WorldExtensions() {
     // unlikely anyways, but safeguards are nice), and we discourage
     // this script from being abused as spam
     this.MAXEDITS = this.width*this.height; // one tile per commit
-    this.DELAY = 250 // milliseconds
+    this.DELAY = 500 // milliseconds
     this.queue = [];
     this.go = true;
 
@@ -72,6 +72,18 @@ function WorldExtensions() {
                 this.tileY*this.height+this.charY];
     }
 
+    // This tells us where our imaginary cursor is on the world using world
+    // coordinates.
+    // A world coordinate is 4 tiles high and 4 tiles wide, in case you
+    // are trying to understand the system.
+    this.getWorldCoords = function() {
+        var pos = this.getCartesian();
+        return [
+            Math.round(pos[0]/(4*this.width)),
+            -Math.round(pos[1]/(4*this.height))
+        ];
+    }
+
     // This moves the virtual cursor to the screen cursor
     this.goToCursor = function() {
         var pos = this.doGetCartesian();
@@ -85,6 +97,15 @@ function WorldExtensions() {
         var _ref = Helpers.getCellCoords(this.world._state.selected);
         return [_ref[1]*this.width+_ref[3],
                 _ref[0]*this.height+_ref[2]];
+    }
+
+    // Similar to getWorldCoords, but for screen cursor
+    this.doGetWorldCoords = function() {
+        var pos = this.doGetCartesian();
+        return [
+            Math.round(pos[0]/(4*this.width)),
+            -Math.round(pos[1]/(4*this.height))
+        ];
     }
 
     // Type a character at the current location
