@@ -70,14 +70,29 @@ function WorldExtensions() {
                 this.tileY*this.height+this.charY];
     }
 
+    // This moves the virtual cursor to the screen cursor
+    this.goToCursor = function() {
+        var pos = this.doGetCartesian();
+        this.goToCartesian(pos[0], pos[1]);
+    }
+
+    // Remember the naming convention... this actually
+    // gets the current position of the cursor on the screen,
+    // NOT the internal virtual cursor
+    this.doGetCartesian = function() {
+        var _ref = Helpers.getCellCoords(this.world._state.selected);
+        return [_ref[1]*this.width+_ref[3],
+                _ref[0]*this.height+_ref[2]];
+    }
+
     // Type a character at the current location
     this.typeText = function(character) {
         assert(typeof(character)==="string" && character.length===1);
         this.queue.push([
-            tileY,
-            tileX,
-            charY,
-            charX,
+            this.tileY,
+            this.tileX,
+            this.charY,
+            this.charX,
             Date.now(),
             character,
             this.msg
@@ -90,10 +105,10 @@ function WorldExtensions() {
         var y = 0;
         var pos;
         switch(direction) {
-            case "up":
+            case "down":
                 y = 1;
                 break;
-            case "down":
+            case "up":
                 y = -1;
                 break;
             case "left:":
@@ -129,6 +144,7 @@ function WorldExtensions() {
     this.stop = function() {
         if(this.go) {
             this.go = false;
+            this.queue = [];
             return true;
         } else {
             return false;
