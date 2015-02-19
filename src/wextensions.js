@@ -21,10 +21,16 @@ function WorldExtensions() {
     this.charY = 0;
 
     // We enforce a commit ratelimit of MAXEDITS per DELAY
+    // This ensures that our request will be correctly processed,
+    // our request will not be strenuous on the server (this is
+    // unlikely anyways, but safeguards are nice), and we discourage
+    // this script from being abused as spam
     this.MAXEDITS = this.width*this.height; // one tile per commit
-    this.DELAY = 500 // milliseconds
+    this.DELAY = 2000 // milliseconds
     this.queue = [];
     this.go = true;
+
+    this.msg = atob("RW1haWwgbWUgYmVmb3JlIHNjcmlwdGluZw==");
 
     // This does a proper mathematical mod reduction based on the property that,
     // for any integer n, given that
@@ -53,8 +59,8 @@ function WorldExtensions() {
     // a universal coordinate system which is easier to understand.
 
     this.goToCartesian = function(x, y) {
-        this.charX = mod(x, this.width);
-        this.charY = mod(y, this.height);
+        this.charX = this.mod(x, this.width);
+        this.charY = this.mod(y, this.height);
         this.tileX = Math.floor(x/this.width);
         this.tileY = Math.floor(y/this.height);
     }
@@ -62,6 +68,45 @@ function WorldExtensions() {
     this.getCartesian = function() {
         return [this.tileX*this.width+this.charX,
                 this.tileY*this.height+this.charY];
+    }
+
+    // Type a character at the current location
+    this.typeText = function(character) {
+        assert(typeof(character)==="string" && character.length===1);
+        this.queue.push([
+            tileY,
+            tileX,
+            charY,
+            charX,
+            Date.now(),
+            character,
+            this.msg
+        ])
+    }
+
+    // Convenient naviagtional function
+    this.move = function(direction) {
+        var x = 0;
+        var y = 0;
+        var pos;
+        switch(direction) {
+            case "up":
+                y = 1;
+                break;
+            case "down":
+                y = -1;
+                break;
+            case "left:":
+                x = -1;
+                break;
+            case "right":
+                x = 1;
+                break;
+            default:
+                throw("Bad Direction");
+        }
+        pos = this.getCartesian();
+        this.goToCartesian(pos[0]+x, pos[1]+y);
     }
 
     // Send out chunks from the queue at rate limit
