@@ -25,7 +25,7 @@ function WorldExtensions() {
     // our request will not be strenuous on the server (this is
     // unlikely anyways, but safeguards are nice), and we discourage
     // this script from being abused as spam
-    this.MAXEDITS = this.width*this.height; // one tile per commit
+    this.MAXEDITS = this.width*this.height; // 1 tiles per commit
     this.DELAY = 2000 // milliseconds
     this.queue = [];
     this.go = true;
@@ -126,8 +126,13 @@ function WorldExtensions() {
 
     // Send out chunks from the queue at rate limit
     this.commit = function() {
-        // TODO: commit shit
-        // ...
+        if(this.world._edits.length === 0) {
+            var stage = [];
+            while(stage.length <= this.MAXEDITS && this.queue.length > 0) {
+                stage.push(this.queue.shift());
+            }
+            this.world._edits = stage;
+        }
         if(this.go) {
             var that = this;
             setTimeout(
