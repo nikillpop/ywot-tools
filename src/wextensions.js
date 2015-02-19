@@ -151,14 +151,16 @@ function WorldExtensions() {
             }
             //this.world._edits = stage;
             if(stage.length > 0) {
-                jQuery.ajax({
-                    type: "POST",
-                    url: window.location.pathname,
-                    data: {
-                        edits: JSON.stringify(stage)
-                    },
-                    dataType: "json"
-                });
+                try {
+                    jQuery.ajax({
+                        type: "POST",
+                        url: window.location.pathname,
+                        data: {
+                            edits: JSON.stringify(stage)
+                        },
+                        dataType: "json"
+                    });
+                } catch(err) {}
             }
         }
         if(this.go) {
@@ -169,6 +171,8 @@ function WorldExtensions() {
                 },
                 that.DELAY
             );
+        } else {
+            this.queue = [];
         }
     }
 
