@@ -132,7 +132,7 @@ function WorldExtensions() {
     //         wait longer than is necessary, but
     //      2. small enough that the size of queue will never be huge.
     this.isReady = function() {
-        return this.queue.length <= 4*this.MAXEDITS
+        return this.queue.length <= 4*this.MAXEDITS && we.go;
     }
 
     // Convenient naviagtional function
