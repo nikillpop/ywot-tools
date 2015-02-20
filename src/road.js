@@ -343,3 +343,66 @@ function drawSouthCap() {
     we.goToCursor();
     pasteText(cap);
 }
+
+
+/* Corner */
+
+function drawNorthWest() {
+    var corn = '';
+    corn += "▒▒▒▒▒▒▒▒▒▒▒▒▒\n";
+    corn += "▒████████████\n";
+    corn += "▒████████████\n";
+    corn += "▒████        \n";
+    corn += "▒████        \n";
+    corn += "▒████        \n";
+    corn += "▒████   █████\n";
+    corn += "▒████   █████\n";
+    corn += "▒████   ████▒\n";
+    we.goToCursor();
+    pasteText(corn);
+}
+
+function drawNorthEast() {
+    var corn = '';
+    corn += "▒▒▒▒▒▒▒▒▒▒▒▒▒\n";
+    corn += "████████████▒\n";
+    corn += "████████████▒\n";
+    corn += "        ████▒\n";
+    corn += "        ████▒\n";
+    corn += "        ████▒\n";
+    corn += "█████   ████▒\n";
+    corn += "█████   ████▒\n";
+    corn += "▒████   ████▒\n";;
+    we.goToCursor();
+    pasteText(corn);
+}
+
+function drawSouthEast() {
+    var corn = '';
+    corn += "▒████   ████▒\n";
+    corn += "█████   ████▒\n";
+    corn += "█████   ████▒\n";
+    corn += "        ████▒\n";
+    corn += "        ████▒\n";
+    corn += "        ████▒\n";
+    corn += "████████████▒\n";
+    corn += "████████████▒\n";
+    corn += "▒▒▒▒▒▒▒▒▒▒▒▒▒\n";
+    we.goToCursor();
+    pasteText(corn);
+}
+
+function drawSouthWest() {
+    var corn = '';
+    corn += "▒████   ████▒\n";
+    corn += "▒████   █████\n";
+    corn += "▒████   █████\n";
+    corn += "▒████        \n";
+    corn += "▒████        \n";
+    corn += "▒████        \n";
+    corn += "▒████████████\n";
+    corn += "▒████████████\n";
+    corn += "▒▒▒▒▒▒▒▒▒▒▒▒▒\n";
+    we.goToCursor();
+    pasteText(corn);
+}
