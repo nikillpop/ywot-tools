@@ -290,3 +290,56 @@ function drawWestIntersection() {
     }
     we.goToCursor();
 }
+
+
+/* Caps */
+
+function drawEastCap() {
+    var cap = '';
+    cap += "▒▒▒▒▒▒▒\n";
+    cap += "██████▒\n";
+    cap += "██████▒\n";
+    cap += "  ████▒\n";
+    cap += "  ████▒\n";
+    cap += "  ████▒\n";
+    cap += "██████▒\n";
+    cap += "██████▒\n";
+    cap += "▒▒▒▒▒▒▒";
+    we.goToCursor();
+    pasteText(cap);
+}
+
+function drawWestCap() {
+    var cap = '';
+    cap += "▒▒▒▒▒▒▒\n";
+    cap += "▒██████\n";
+    cap += "▒██████\n";
+    cap += "▒████  \n";
+    cap += "▒████  \n";
+    cap += "▒████  \n";
+    cap += "▒██████\n";
+    cap += "▒██████\n";
+    cap += "▒▒▒▒▒▒▒";
+    we.goToCursor();
+    pasteText(cap);
+}
+
+function drawNorthCap() {
+    var cap = '';
+    cap += "▒▒▒▒▒▒▒▒▒▒▒▒▒\n";
+    cap += "▒███████████▒\n";
+    cap += "▒███████████▒\n";
+    cap += "▒████   ████▒\n";
+    we.goToCursor();
+    pasteText(cap);
+}
+
+function drawSouthCap() {
+    var cap = '';
+    cap += "▒████   ████▒\n";
+    cap += "▒███████████▒\n";
+    cap += "▒███████████▒\n";
+    cap += "▒▒▒▒▒▒▒▒▒▒▒▒▒\n";
+    we.goToCursor();
+    pasteText(cap);
+}
