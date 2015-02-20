@@ -1,3 +1,5 @@
+/* Roads */
+
 function drawEastRoad(startPos) {
     var pos;
     if(startPos) {
@@ -124,4 +126,167 @@ function drawNorthRoad(startPos) {
             10
         );
     }
+}
+
+
+/* Intersections */
+
+function drawSouthIntersection() {
+    we.goToCursor();
+    var pos = we.getCartesian();
+    var offsets = [
+        [-6, 0],
+        [-5, 0],
+        [-4, 0],
+        [-3, 0],
+        [-2, 0],
+        [-1, 0],
+        [0, 0],
+        [1, 0],
+        [2, 0],
+        [3, 0],
+        [4, 0],
+        [5, 0],
+        [6, 0],
+        [-1, -1],
+        [0, -1],
+        [1, -1],
+        [-1, -2],
+        [0, -2],
+        [1, -2],
+        [-2, -4],
+        [-1, -4],
+        [0, -4],
+        [1, -4],
+        [2, -4],
+    ]
+    for(var i = 0; i < offsets.length; i++) {
+        we.goToCartesian(
+            pos[0]+offsets[i][0],
+            pos[1]+offsets[i][1]
+        )
+        we.typeText(' ')
+    }
+    we.goToCursor();
+}
+
+function drawNorthIntersection() {
+    we.goToCursor();
+    var pos = we.getCartesian();
+    var offsets = [
+        [-6, 0],
+        [-5, 0],
+        [-4, 0],
+        [-3, 0],
+        [-2, 0],
+        [-1, 0],
+        [0, 0],
+        [1, 0],
+        [2, 0],
+        [3, 0],
+        [4, 0],
+        [5, 0],
+        [6, 0],
+        [-1, 1],
+        [0, 1],
+        [1, 1],
+        [-1, 2],
+        [0, 2],
+        [1, 2],
+        [-2, 4],
+        [-1, 4],
+        [0, 4],
+        [1, 4],
+        [2, 4],
+    ]
+    for(var i = 0; i < offsets.length; i++) {
+        we.goToCartesian(
+            pos[0]+offsets[i][0],
+            pos[1]+offsets[i][1]
+        )
+        we.typeText(' ')
+    }
+    we.goToCursor();
+}
+
+function drawEastIntersection() {
+    we.goToCursor();
+    var pos = we.getCartesian();
+    var offsets = [
+        [0, -4],
+        [0, -3],
+        [0, -2],
+        [0, -1],
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 4],
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [-2, -1],
+        [-2, 0],
+        [-2, 1],
+        [-3, -1],
+        [-3, 0],
+        [-3, 1],
+        [-4, -1],
+        [-4, 0],
+        [-4, 1],
+        [-6, -2],
+        [-6, -1],
+        [-6, 0],
+        [-6, 1],
+        [-6, 2]
+    ]
+    for(var i = 0; i < offsets.length; i++) {
+        we.goToCartesian(
+            pos[0]+offsets[i][0],
+            pos[1]+offsets[i][1]
+        )
+        we.typeText(' ')
+    }
+    we.goToCursor();
+}
+
+function drawWestIntersection() {
+    we.goToCursor();
+    var pos = we.getCartesian();
+    var offsets = [
+        [0, -4],
+        [0, -3],
+        [0, -2],
+        [0, -1],
+        [0, 0],
+        [0, 1],
+        [0, 2],
+        [0, 3],
+        [0, 4],
+        [1, -1],
+        [1, 0],
+        [1, 1],
+        [2, -1],
+        [2, 0],
+        [2, 1],
+        [3, -1],
+        [3, 0],
+        [3, 1],
+        [4, -1],
+        [4, 0],
+        [4, 1],
+        [6, -2],
+        [6, -1],
+        [6, 0],
+        [6, 1],
+        [6, 2]
+    ]
+    for(var i = 0; i < offsets.length; i++) {
+        we.goToCartesian(
+            pos[0]+offsets[i][0],
+            pos[1]+offsets[i][1]
+        )
+        we.typeText(' ')
+    }
+    we.goToCursor();
 }
