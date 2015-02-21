@@ -11,3 +11,25 @@ function pasteText(string) {
         }
     }
 }
+
+function clearBlock(width, height, charactOrPos) {
+    we.goToCursor();
+    var string;
+    var pos = we.getCartesian();
+    if(typeof(charactOrPos) === 'undefined') {
+        string = ' ';
+    } else if(typeof(charactOrPos) === 'object') {
+        pos = charactOrPos;
+        string = ' ';
+    } else if(charactOrPos === 'random') {
+        string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 !@#$%^&*()_+';
+    } else {
+        string = charactOrPos;
+    }
+    for(var row = 0; row < height; row++) {
+        for(var col = 0; col < width; col++) {
+            we.goToCartesian(pos[0]+col,pos[1]+row);
+            we.typeText(string[Math.floor(string.length*Math.random())])
+        }
+    }
+}

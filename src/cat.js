@@ -53,3 +53,23 @@ function drawCat(startPos) {
         }
     }
 }
+
+var listOfPlaces = [];
+function drawLotsOfCats(xmin, xmax, ymin, ymax) {
+    if(we.isReady()) {
+        we.goToCartesian(
+            Math.floor(64*((xmax-xmin)*Math.random()+xmin)),
+            Math.floor(-32*((ymax-ymin)*Math.random()+ymin))
+        );
+        listOfPlaces.push(we.getCartesian());
+        drawCat(we.getCartesian());
+    }
+    if(we.go) {
+        setTimeout(
+            function() {
+                drawLotsOfCats(xmin, xmax, ymin, ymax);
+            },
+            10
+        );
+    }
+}
