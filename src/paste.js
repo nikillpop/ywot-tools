@@ -12,9 +12,11 @@ function pasteText(string) {
     }
 }
 
+// Non-breaking spaces are not drawn
 function clearBlock(width, height, charactOrPos) {
     we.goToCursor();
     var string;
+    var chosen;
     var pos = we.getCartesian();
     if(typeof(charactOrPos) === 'undefined') {
         string = ' ';
@@ -28,8 +30,11 @@ function clearBlock(width, height, charactOrPos) {
     }
     for(var row = 0; row < height; row++) {
         for(var col = 0; col < width; col++) {
-            we.goToCartesian(pos[0]+col,pos[1]+row);
-            we.typeText(string[Math.floor(string.length*Math.random())])
+            chosen = string[Math.floor(string.length*Math.random())];
+            if(chosen !== we.NBS) {
+                we.goToCartesian(pos[0]+col,pos[1]+row);
+                we.typeText(chosen);
+            }
         }
     }
 }
