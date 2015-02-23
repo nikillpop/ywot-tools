@@ -38,3 +38,57 @@ function clearBlock(width, height, charactOrPos) {
         }
     }
 }
+
+function clearSpiral(number, initPosition) {
+    var n = 0;
+    var initPos = initPosition;
+    var pos;
+    // Initialization stuff, ignore
+    if(typeof(number)==='number') {
+        n = number;
+    } else {
+        we.goToCursor();
+        initPos = we.getCartesian();
+    }
+    if(we.isReady()) {
+        // Now for the fun
+        for(var i = 0; i < 1000; i++) {
+            pos = _spiralPosFromN(n);
+            we.goToCartesian(pos[0]+initPos[0], pos[1]+initPos[1]);
+            we.typeText(" ");
+            n++;
+        }
+    }
+    if(we.go) {
+        setTimeout(
+            function() {
+                clearSpiral(n, initPos);
+            },
+            10
+        );
+    }
+}
+
+function _spiralPosFromN(n) {
+    var pos;
+    var sqn = Math.floor(Math.sqrt(n));
+    var sqn2 = Math.pow(sqn, 2);
+    if(sqn%2 === 1) {
+        pos = [(sqn+1)/2, (sqn-1)/2];
+        if(n <= sqn2+sqn) {
+            pos[1] -= n-sqn2;
+        } else {
+            pos[1] -= sqn;
+            pos[0] -= n-(sqn2+sqn);
+        }
+    } else {
+        pos = [-sqn/2, -sqn/2];
+        if(n <= sqn2+sqn) {
+            pos[1] += n-sqn2;
+        } else {
+            pos[1] += sqn;
+            pos[0] += n-(sqn2+sqn);
+        }
+    }
+    return pos;
+}
