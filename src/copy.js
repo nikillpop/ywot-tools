@@ -20,7 +20,7 @@ function upperCaseBlock(width, height, pos) {
 		we.goToCursor();
 		pos = we.getCartesian();
 	}
-	pasteText(copy(width, height).toUpperCase().replace(/[^\w\n]/g,we.NBS), pos)
+	pasteText(copy(width, height, pos).toUpperCase().replace(/[^\w\n]/g,we.NBS), pos)
 }
 
 function loopUpperCaseBlock(width, height, pos) {
@@ -30,6 +30,8 @@ function loopUpperCaseBlock(width, height, pos) {
 	}
 	if(we.isReady()) {
 		upperCaseBlock(width, height, pos);
+	} else {
+		pos = pos
 	}
 	if(we.go) {
 		setTimeout(
