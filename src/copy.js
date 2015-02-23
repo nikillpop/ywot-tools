@@ -31,7 +31,7 @@ function loopUpperCaseBlock(width, height, pos) {
 	if(we.isReady()) {
 		upperCaseBlock(width, height, pos);
 	}
-	if(go) {
+	if(we.go) {
 		setTimeout(
 			function() {
 				loopUpperCaseBlock(width, height, pos);
