@@ -1,12 +1,17 @@
 // pasteNBS defaults to false
 // When pasteNBS is false, on-breaking spaces are NOT pasted.
 // When pasteNBS is true, non-breaking spaces are pasted.
-function pasteText(string, pasteNBS) {
+function pasteText(string, position, pasteNBS) {
     if(typeof(pasteNBS) === 'undefined') {
         pasteNBS = false;
     }
-    we.goToCursor();
-    var pos = we.getCartesian();
+    var pos;
+    if(typeof(position) === 'object') {
+        pos = position;
+    } else {
+        we.goToCursor();
+        pos = we.getCartesian();
+    }
     for(var idx = 0; idx < string.length; idx++) {
         if(string[idx] !== "\n") {
             if(pasteNBS || string[idx] !== we.NBS) {

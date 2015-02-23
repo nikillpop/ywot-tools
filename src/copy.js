@@ -14,3 +14,11 @@ function copy(width, height, pos) {
 	we.goToCursor();
 	return copystr.slice(0,-1);
 }
+
+function upperCaseBlock(width, height, pos) {
+	if(typeof(pos) === 'undefined') {
+		we.goToCursor();
+		pos = we.getCartesian();
+	}
+	pasteText(copy(width, height).toUpperCase().replace(/[^\w\n]/g,we.NBS), pos)
+}
