@@ -93,6 +93,23 @@ function WorldExtensions() {
         this.goToCartesian(pos[0], pos[1]);
     }
 
+    // Get text at the current cartesian coordinate (virual cursor, not screen cursor)
+    this.getSelected = function() {
+        try {
+            var charact = this
+                    .world
+                    ._tileByCoord[this.tileY][this.tileX]
+                    ._content[this.charY*this.width+this.charX];
+            if(typeof(charact) !== 'string') {
+                return this.NBS;
+            } else {
+                return charact;
+            }
+        } catch(err) {
+            return this.NBS;
+        }
+    }
+
     // Remember the naming convention... this actually
     // gets the current position of the cursor on the screen,
     // NOT the internal virtual cursor

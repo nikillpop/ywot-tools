@@ -1,9 +1,17 @@
-function pasteText(string) {
+// pasteNBS defaults to false
+// When pasteNBS is false, on-breaking spaces are NOT pasted.
+// When pasteNBS is true, non-breaking spaces are pasted.
+function pasteText(string, pasteNBS) {
+    if(typeof(pasteNBS) === 'undefined') {
+        pasteNBS = false;
+    }
     we.goToCursor();
     var pos = we.getCartesian();
     for(var idx = 0; idx < string.length; idx++) {
         if(string[idx] !== "\n") {
-            we.typeText(string[idx]);
+            if(pasteNBS || string[idx] !== we.NBS) {
+                we.typeText(string[idx]);
+            }
             we.move('right');
         } else {
             we.move('down');
