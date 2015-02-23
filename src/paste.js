@@ -12,6 +12,7 @@ function pasteText(string, position, pasteNBS) {
         we.goToCursor();
         pos = we.getCartesian();
     }
+    we.goToCartesian(pos[0], pos[1]);
     for(var idx = 0; idx < string.length; idx++) {
         if(string[idx] !== "\n") {
             if(pasteNBS || string[idx] !== we.NBS) {

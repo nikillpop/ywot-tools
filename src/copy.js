@@ -22,3 +22,21 @@ function upperCaseBlock(width, height, pos) {
 	}
 	pasteText(copy(width, height).toUpperCase().replace(/[^\w\n]/g,we.NBS), pos)
 }
+
+function loopUpperCaseBlock(width, height, pos) {
+	if(typeof(pos) === 'undefined') {
+		we.goToCursor();
+		pos = we.getCartesian();
+	}
+	if(we.isReady()) {
+		upperCaseBlock(width, height, pos);
+	}
+	if(go) {
+		setTimeout(
+			function() {
+				loopUpperCaseBlock(width, height, pos);
+			},
+			100
+		);
+	}
+}
