@@ -183,6 +183,9 @@ function WorldExtensions() {
     // Send out chunks from the queue at rate limit
     this.commit = function() {
         if(this.world._edits.length === 0) {
+            // This line is just to stop from pausing while
+            // stuff is going on
+            this.world._state.lastEvent = new Date().getTime();
             var stage = [];
             var currentEdit;
             while(stage.length <= this.MAXEDITS && this.queue.length > 0) {
