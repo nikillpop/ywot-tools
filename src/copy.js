@@ -30,6 +30,7 @@ function loopUpperCaseBlock(width, height, pos) {
 	}
 	if(we.isReady()) {
 		upperCaseBlock(width, height, pos);
+		we.world._state.lastEvent = new Date().getTime();
 	} else {
 		pos = pos
 	}
