@@ -42,3 +42,35 @@ function loopUpperCaseBlock(width, height, pos) {
 		);
 	}
 }
+
+function tessellateBehind(width, height) {
+	var strA = ["\\__/ / __ \\ ",
+				"____/ /  \\ \\",
+				"___ \\ \\   \\_",
+				"   \\ \\ \\    ",
+				"___/ / /   _",
+				"____/ /   / ",
+				" __ \\ \\__/ /",
+				"/  \\ \\____/ ",
+				"\\   \\____ \\ ",
+				" \\       \\ \\",
+				" /   ____/ /",
+				"/   / ____/ "];
+	we.goToCursor();
+	var firstPass = "";
+	var secondPass = copy(width, height).replace(/[^\w\n]/g, we.NBS);
+	for(var idx = 0; idx < strA.length; idx++) { strA[idx] = strA[idx].replace(/ /g, we.NBS); }
+	for(var row = 0; row < height; row++) {
+		for(var col = 0; col < width; col++) {
+			firstPass += strA
+				[
+					we.mod((we.getCartesian()[0]+row),strA.length)
+				][
+					we.mod((we.getCartesian()[1]+col),strA[0].length)
+				];
+		}
+		firstPass += "\n";
+	}
+	pasteText(firstPass);
+	pasteText(secondPass);
+}
