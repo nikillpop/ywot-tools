@@ -44,18 +44,11 @@ function loopUpperCaseBlock(width, height, pos) {
 }
 
 function tessellateBehind(width, height) {
-	var strA = ["\\__/ / __ \\ ",
-				"____/ /  \\ \\",
-				"___ \\ \\   \\_",
-				"   \\ \\ \\    ",
-				"___/ / /   _",
-				"____/ /   / ",
-				" __ \\ \\__/ /",
-				"/  \\ \\____/ ",
-				"\\   \\____ \\ ",
-				" \\       \\ \\",
-				" /   ____/ /",
-				"/   / ____/ "];
+	var strA = [
+		"╦╩═",
+		"╩═╦",
+		"═╦╩"
+	]
 	we.goToCursor();
 	var firstPass = "";
 	var secondPass = copy(width, height).replace(/[^\w\n]/g, we.NBS);
@@ -74,3 +67,18 @@ function tessellateBehind(width, height) {
 	pasteText(firstPass);
 	pasteText(secondPass);
 }
+
+/*
+	var strA = ["\\__/ / __ \\ ",
+				"____/ /  \\ \\",
+				"___ \\ \\   \\_",
+				"   \\ \\ \\    ",
+				"___/ / /   _",
+				"____/ /   / ",
+				" __ \\ \\__/ /",
+				"/  \\ \\____/ ",
+				"\\   \\____ \\ ",
+				" \\       \\ \\",
+				" /   ____/ /",
+				"/   / ____/ "];
+*/
