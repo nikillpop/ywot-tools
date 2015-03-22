@@ -26,6 +26,24 @@ function pasteText(string, position, pasteNBS) {
     }
 }
 
+// Paste non-stop
+function pasteTextStream(string, position, pasteNBS) {
+    if(typeof(position) == 'undefined') {
+        position = we.doGetCartesian();
+    }
+    if(we.isReady()) {
+        pasteText(string, position, pasteNBS);
+    }
+    if(we.go) {
+        setTimeout(
+            function() {
+                pasteTextStream(string, position, pasteNBS);
+            },
+            100
+        );
+    }
+}
+
 // Non-breaking spaces are not drawn
 function clearBlock(width, height, charactOrPos) {
     we.goToCursor();
