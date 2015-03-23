@@ -39,7 +39,7 @@ function pasteTextStream(string, position, pasteNBS) {
             function() {
                 pasteTextStream(string, position, pasteNBS);
             },
-            100
+            900 + Math.floor(200*Math.random())
         );
     }
 }
@@ -86,8 +86,12 @@ function clearSpiral(number, initPosition) {
         // Now for the fun
         for(var i = 0; i < 1000; i++) {
             pos = _spiralPosFromN(n);
-            we.goToCartesian(pos[0]+initPos[0], pos[1]+initPos[1]);
-            we.typeText(" ");
+            we.goToCartesian(3*pos[0]+initPos[0], pos[1]+initPos[1]);
+            we.typeText("X");
+            we.goToCartesian(3*pos[0]+initPos[0] + 1, pos[1]+initPos[1]);
+            we.typeText("X");
+            we.goToCartesian(3*pos[0]+initPos[0] + 2, pos[1]+initPos[1]);
+            we.typeText("X");
             n++;
         }
     }
