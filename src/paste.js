@@ -105,6 +105,73 @@ function clearSpiral(number, initPosition) {
     }
 }
 
+
+var tessellPattern = [
+    "   /        \\           ",
+    "  /          \\          ",
+    " /            \\         ",
+    "/              \\________",
+    "\\              /        ",
+    " \\            /         ",
+    "  \\          /          ",
+    "   \\________/           "
+]
+var tessellWidth = tessellPattern[0].length;
+var tessellHeight = tessellPattern.length;
+
+we.nCounter = 0;
+
+function tessellateSpiral(number, initPosition) {
+    var n = 0;
+    var initPos = initPosition;
+    var pos;
+    var currChar;
+    // Initialization stuff, ignore
+    if(typeof(number)==='number') {
+        n = number;
+    } else {
+        we.goToCursor();
+        initPos = we.getCartesian();
+    }
+    we.nCounter = n;
+    if(we.isReady()) {
+        // Now for the fun
+        for(var i = 0; i < 1000; i++) {
+            pos = _spiralPosFromN(n);
+            we.goToCartesian(3*pos[0]+initPos[0], pos[1]+initPos[1]);
+            currChar = tessellPattern[
+                            we.mod(we.getCartesian()[1], tessellHeight)
+                        ][
+                            we.mod(we.getCartesian()[0], tessellWidth)
+                        ];
+            if(currChar !== " ") { we.typeText(currChar); }
+            we.goToCartesian(3*pos[0]+initPos[0] + 1, pos[1]+initPos[1]);
+            currChar = tessellPattern[
+                            we.mod(we.getCartesian()[1], tessellHeight)
+                        ][
+                            we.mod(we.getCartesian()[0], tessellWidth)
+                        ];
+            if(currChar !== " ") { we.typeText(currChar); }
+            we.goToCartesian(3*pos[0]+initPos[0] + 2, pos[1]+initPos[1]);
+            currChar = tessellPattern[
+                            we.mod(we.getCartesian()[1], tessellHeight)
+                        ][
+                            we.mod(we.getCartesian()[0], tessellWidth)
+                        ];
+            if(currChar !== " ") { we.typeText(currChar); }
+            n++;
+        }
+    }
+    if(we.go) {
+        setTimeout(
+            function() {
+                tessellateSpiral(n, initPos);
+            },
+            10
+        );
+    }
+}
+
 function _spiralPosFromN(n) {
     var pos;
     var sqn = Math.floor(Math.sqrt(n));
