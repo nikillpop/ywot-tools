@@ -36,6 +36,19 @@ function removeString(width, height, string, pos) {
 	);
 }
 
+// This function replaces a particular string from a block
+function replaceString(width, height, string, replacer, pos) {
+	regExpFromString = new RegExp(RegExp.escape(string.replace(/ /g, we.NBS)), 'g');
+	pasteText(
+		copy(width, height, pos)
+		.replace(/ /g, we.NBS)
+		.replace(regExpFromString, " ".repeat(string.length))
+		.replace(/[^ \n]/g, we.NBS)
+		.replace(new RegExp(" ".repeat(string.length), "g"), replacer)
+	);
+}
+
+
 function upperCaseBlock(width, height, pos) {
 	if(typeof(pos) === 'undefined') {
 		we.goToCursor();
