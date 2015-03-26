@@ -254,6 +254,18 @@ function WorldExtensions() {
  * RegExp
  * In production this is bad... don't monkey patch the
  * built-in prototypes as I have done here
+ * 
+ */
+
+// This sanitizes a string for regular expressions
+RegExp.escape= function(s) {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
+
+
+/*
+ * Initialization
+ *
  */
 
 var we = new WorldExtensions();
