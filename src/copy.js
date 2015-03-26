@@ -23,7 +23,18 @@ function fastClearBlock(width, height, pos) {
 		.replace(/ /g, we.NBS)
 		.replace(eval("/[^"+we.NBS+"\\n]/g"), " ")
 	);
-} 
+}
+
+// This function removes a particular string from a block
+function removeString(width, height, string, pos) {
+	regExpFromString = new RegExp(RegExp.escape(string.replace(/ /g, we.NBS)), 'g');
+	pasteText(
+		copy(width, height, pos)
+		.replace(/ /g, we.NBS)
+		.replace(regExpFromString, " ".repeat(string.length))
+		.replace(/[^ \n]/g, we.NBS)
+	);
+}
 
 function upperCaseBlock(width, height, pos) {
 	if(typeof(pos) === 'undefined') {

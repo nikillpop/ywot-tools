@@ -251,7 +251,6 @@ function WorldExtensions() {
 /*
  * Additional namespacing
  * 
- * RegExp
  * In production this is bad... don't monkey patch the
  * built-in prototypes as I have done here
  * 
@@ -261,6 +260,11 @@ function WorldExtensions() {
 RegExp.escape= function(s) {
     return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };
+
+// Multiply a string by num
+String.prototype.repeat = function(num) {
+    return new Array(num + 1).join(this);
+}
 
 
 /*
