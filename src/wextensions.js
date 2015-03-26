@@ -248,4 +248,12 @@ function WorldExtensions() {
 
 }
 
+/*
+ * Additional namespacing
+ * 
+ * RegExp
+ * In production this is bad... don't monkey patch the
+ * built-in prototypes as I have done here
+ */
+
 var we = new WorldExtensions();
