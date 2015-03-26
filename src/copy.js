@@ -15,6 +15,16 @@ function copy(width, height, pos) {
 	return copystr.slice(0,-1);
 }
 
+// This is the same as clearBlock but it relies on "copy" to 
+// perform the operation much more quickly
+function fastClearBlock(width, height, pos) {
+	pasteText(
+		copy(width, height, pos)
+		.replace(/ /g, we.NBS)
+		.replace(eval("/[^"+we.NBS+"\\n]/g"), " ")
+	);
+} 
+
 function upperCaseBlock(width, height, pos) {
 	if(typeof(pos) === 'undefined') {
 		we.goToCursor();
