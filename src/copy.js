@@ -54,7 +54,15 @@ function upperCaseBlock(width, height, pos) {
 		we.goToCursor();
 		pos = we.getCartesian();
 	}
-	pasteText(copy(width, height, pos).toUpperCase().replace(/[^\w\n]/g,we.NBS), pos)
+	pasteText(
+		copy(width, height, pos)
+		.replace(eval("/"+we.NBS+"/g"), " ")
+		.replace(/           Welcome to           /g, "                                ")
+		.replace(/      ..t...e.....x....t..      /g, "                                ")
+		.replace(/  Featured worlds         Help  /g, "                                ")
+		.replace(/[^a-z\n]/g, we.NBS)
+		.toUpperCase()
+	)
 }
 
 function loopUpperCaseBlock(width, height, pos) {
@@ -72,7 +80,7 @@ function loopUpperCaseBlock(width, height, pos) {
 			function() {
 				loopUpperCaseBlock(width, height, pos);
 			},
-			100
+			2000
 		);
 	}
 }
