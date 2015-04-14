@@ -34,6 +34,7 @@ function WorldExtensions() {
 
     // This is a usefull character at times (non-breaking space)
     this.NBS = String.fromCharCode(160);
+    this.HELL = String.fromCharCode(8192);
 
     // This does a proper mathematical mod reduction based on the property that,
     // for any integer n, given that
